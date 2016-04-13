@@ -1,5 +1,9 @@
 package project;
 
+/**
+ * @author jstanley
+ * Defines the parent class of all other elements of the data structure.
+ */
 public abstract class Glyph {
 	
 	/**
