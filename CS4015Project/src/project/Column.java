@@ -2,12 +2,12 @@ package project;
 
 /**
  * @author jstanley
- * Defines a Row, which will have children of different types of Glyphs.
+ * Defines a Column, which will have Rows as children.
  */
-public class Row extends Glyph {
-	
+public class Column extends Glyph {
+
 	/**
-	 * A GoFList containing the children of this Row.
+	 *  A GoFList containing the children of this Column.
 	 */
 	private GoFList children = new GoFListAdapter();
 	
@@ -16,11 +16,10 @@ public class Row extends Glyph {
 	 */
 	@Override
 	public void printValue() {
-		System.out.print(" ");
+		// TODO Auto-generated method stub
 		for(int i = 0; i < this.children.count(); i++) {
 			this.children.getAt(i).printValue();
 		}
-		System.out.println(); // End of row
 	}
 	
 	/* (non-Javadoc)
@@ -50,4 +49,5 @@ public class Row extends Glyph {
 	public int numberOfChildren() {
 		return this.children.count();
 	}
+
 }

@@ -31,7 +31,7 @@ public class GlyphBuilder {
 	 */
 	public GlyphBuilder() {
 		this.glyphFactory = new GlyphFactory();
-		this.root = this.glyphFactory.createRow(); // Technically a column, but has the same functionality of a row.
+		this.root = this.glyphFactory.createColumn(); // Technically a column, but has the same functionality of a row.
 	}
 	
 	/**

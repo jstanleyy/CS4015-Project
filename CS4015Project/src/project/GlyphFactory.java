@@ -24,10 +24,18 @@ public class GlyphFactory {
 	}
 	
 	/**
-	 * Creates and returns a new Row object.
+	 * Creates and returns a new Row Glyph.
 	 * @return A new Row object.
 	 */
 	public Row createRow() {
 		return new Row();
+	}
+	
+	/**
+	 * Creates and returns a new Column Glyph.
+	 * @return
+	 */
+	public Column createColumn() {
+		return new Column();
 	}
 }
