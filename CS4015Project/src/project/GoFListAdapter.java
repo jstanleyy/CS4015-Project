@@ -12,13 +12,13 @@ public class GoFListAdapter implements GoFList {
 	/**
 	 * Holds a reference to the Adaptee.
 	 */
-	private List list;
+	private List<Glyph> list;
 	
 	/**
 	 * Initializes list to be a new ArrayList.
 	 */
 	public GoFListAdapter() {
-		this.list = new ArrayList();
+		this.list = new ArrayList<Glyph>();
 	}
 	
 	/* (non-Javadoc)
@@ -54,34 +54,34 @@ public class GoFListAdapter implements GoFList {
 	}
 
 	/* (non-Javadoc)
-	 * @see project.GoFList#include(java.lang.Object)
+	 * @see project.GoFList#include(project.Glyph)
 	 */
 	@Override
-	public boolean include(Object x) {
+	public boolean include(Glyph x) {
 		return this.list.contains(x);
 	}
 
 	/* (non-Javadoc)
-	 * @see project.GoFList#append(java.lang.Object)
+	 * @see project.GoFList#append(project.Glyph)
 	 */
 	@Override
-	public void append(Object x) {
+	public void append(Glyph x) {
 		this.list.add(x);
 	}
-
+	
 	/* (non-Javadoc)
-	 * @see project.GoFList#prepend(java.lang.Object)
+	 * @see project.GoFList#prepend(project.Glyph)
 	 */
 	@Override
-	public void prepend(Object x) {
+	public void prepend(Glyph x) {
 		this.list.add(0, x);
 	}
 
 	/* (non-Javadoc)
-	 * @see project.GoFList#delete(java.lang.Object)
+	 * @see project.GoFList#delete(project.Glyph)
 	 */
 	@Override
-	public void delete(Object x) {
+	public void delete(Glyph x) {
 		this.list.remove(x);
 	}
 
@@ -102,10 +102,10 @@ public class GoFListAdapter implements GoFList {
 	}
 
 	/* (non-Javadoc)
-	 * @see project.GoFList#replace(int, java.lang.Object)
+	 * @see project.GoFList#replace(int, project.Glyph)
 	 */
 	@Override
-	public void replace(int index, Object x) {
+	public void replace(int index, Glyph x) {
 		this.list.remove(index);
 		this.list.add(index, x);
 	}

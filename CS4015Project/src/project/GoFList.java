@@ -36,25 +36,25 @@ public interface GoFList {
 	 * @param x The element to be checked for.
 	 * @return Whether or not x is in the list.
 	 */
-	public boolean include(Object x);
+	public boolean include(Glyph x);
 	
 	/**
 	 * Adds x to the end of the list.
 	 * @param x The element to be added.
 	 */
-	public void append(Object x);
+	public void append(Glyph x);
 	
 	/**
 	 * Adds x to the beginning of the list.
 	 * @param x The element to be added.
 	 */
-	public void prepend(Object x);
+	public void prepend(Glyph x);
 	
 	/**
 	 * Removes the first appearance of x from the list.
 	 * @param x The element to be removed.
 	 */
-	public void delete(Object x);
+	public void delete(Glyph x);
 	
 	/**
 	 * Removes the first element from the list.
@@ -71,5 +71,5 @@ public interface GoFList {
 	 * @param index The index of the element to be replaced.
 	 * @param x The element that will be added to the list.
 	 */
-	public void replace(int index, Object x);
+	public void replace(int index, Glyph x);
 }
