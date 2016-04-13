@@ -17,19 +17,19 @@ public interface GoFList {
 	 * @param index The index of the element to be returned.
 	 * @return The element at the given index.
 	 */
-	public Object getAt(int index);
+	public Glyph getAt(int index);
 	
 	/**
 	 * Returns the first element of the list.
 	 * @return The first element of the list.
 	 */
-	public Object first();
+	public Glyph first();
 	
 	/**
 	 * Returns the last element of the list
 	 * @return The last element of the list.
 	 */
-	public Object last();
+	public Glyph last();
 	
 	/**
 	 * Returns whether or not x is in the list.

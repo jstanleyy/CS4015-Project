@@ -33,7 +33,7 @@ public class GoFListAdapter implements GoFList {
 	 * @see project.GoFList#getAt(int)
 	 */
 	@Override
-	public Object getAt(int index) {
+	public Glyph getAt(int index) {
 		return this.list.get(index);
 	}
 
@@ -41,7 +41,7 @@ public class GoFListAdapter implements GoFList {
 	 * @see project.GoFList#first()
 	 */
 	@Override
-	public Object first() {
+	public Glyph first() {
 		return this.list.get(0);
 	}
 
@@ -49,7 +49,7 @@ public class GoFListAdapter implements GoFList {
 	 * @see project.GoFList#last()
 	 */
 	@Override
-	public Object last() {
+	public Glyph last() {
 		return this.list.get(this.list.size() - 1);
 	}
 
