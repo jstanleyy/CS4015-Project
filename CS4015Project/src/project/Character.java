@@ -27,4 +27,12 @@ public class Character extends Glyph {
 		System.out.print(c);
 	}
 
+	/* (non-Javadoc)
+	 * @see project.Glyph#createIterator()
+	 */
+	@Override
+	public GlyphIterator createIterator() {
+		return new NullIterator();
+	}
+
 }

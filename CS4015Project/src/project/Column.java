@@ -50,4 +50,12 @@ public class Column extends Glyph {
 		return this.children.count();
 	}
 
+	/* (non-Javadoc)
+	 * @see project.Glyph#createIterator()
+	 */
+	@Override
+	public GlyphIterator createIterator() {
+		return new ListIterator(this.children);
+	}
+
 }

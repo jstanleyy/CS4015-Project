@@ -42,5 +42,11 @@ public abstract class Glyph {
 	 */
 	public int numberOfChildren() {
 		return 0;
-	}	
+	}
+	
+	/**
+	 * Creates the appropriate type of iterator, depending on the type of Glyph.
+	 * @return A ListIterator object.
+	 */
+	public abstract GlyphIterator createIterator();
 }
