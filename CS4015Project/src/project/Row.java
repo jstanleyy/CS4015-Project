@@ -12,15 +12,16 @@ public class Row extends Glyph {
 	private GoFList children = new GoFListAdapter();
 	
 	/* (non-Javadoc)
-	 * @see project.Glyph#printValue()
+	 * @see project.Glyph#getValue()
 	 */
 	@Override
-	public void printValue() {
-		System.out.print(" ");
+	public String getValue() {
+		String val = "";
 		for(int i = 0; i < this.children.count(); i++) {
-			this.children.getAt(i).printValue();
+			val += this.children.getAt(i).getValue();
 		}
-		System.out.println(); // End of row
+		val += "\n"; // End of row
+		return val;
 	}
 	
 	/* (non-Javadoc)

@@ -20,11 +20,11 @@ public abstract class GlyphDecorator extends Glyph {
 	}
 	
 	/* (non-Javadoc)
-	 * @see project.Glyph#printValue()
+	 * @see project.Glyph#getValue()
 	 */
 	@Override
-	public void printValue() {
-		this.glyph.printValue();
+	public String getValue() {
+		return this.glyph.getValue();
 	}
 	
 	/* (non-Javadoc)

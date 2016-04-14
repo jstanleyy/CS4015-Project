@@ -12,14 +12,16 @@ public class Column extends Glyph {
 	private GoFList children = new GoFListAdapter();
 	
 	/* (non-Javadoc)
-	 * @see project.Glyph#printValue()
+	 * @see project.Glyph#getValue()
 	 */
 	@Override
-	public void printValue() {
-		// TODO Auto-generated method stub
+	public String getValue() {
+		String val = "";
 		for(int i = 0; i < this.children.count(); i++) {
-			this.children.getAt(i).printValue();
+			val += this.children.getAt(i).getValue();
 		}
+		
+		return val;
 	}
 	
 	/* (non-Javadoc)

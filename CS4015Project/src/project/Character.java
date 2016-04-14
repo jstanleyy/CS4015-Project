@@ -20,11 +20,11 @@ public class Character extends Glyph {
 	}
 	
 	/* (non-Javadoc)
-	 * @see project.Glyph#printValue()
+	 * @see project.Glyph#getValue()
 	 */
 	@Override
-	public void printValue() {
-		System.out.print(c);
+	public String getValue() {
+		return this.c + "";
 	}
 
 	/* (non-Javadoc)

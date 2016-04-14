@@ -7,9 +7,10 @@ package project;
 public abstract class Glyph {
 	
 	/**
-	 * Prints the value of the Glyph.
+	 * Returns the value of the glyph.
+	 * @return The value of the glyph.
 	 */
-	public abstract void printValue();
+	public abstract String getValue();
 	
 	/**
 	 * Adds the given child to the end of the children list.
