@@ -50,4 +50,10 @@ public abstract class Glyph {
 	 * @return A ListIterator object.
 	 */
 	public abstract GlyphIterator createIterator();
+	
+	/**
+	 * Accepts a visitor and calls the visitor with the glyph as a parameter.
+	 * @param visitor The visitor that will visit the glyph.
+	 */
+	public abstract void accept(GlyphVisitor visitor);
 }

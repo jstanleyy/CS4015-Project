@@ -23,5 +23,11 @@ public interface GlyphVisitor {
 	 * @param column The column to be visited.
 	 */
 	public void visitColumn(Column column);
+	
+	/**
+	 * Returns the value of the visitor
+	 * @return The value of the visitor.
+	 */
+	public String getResult();
 
 }

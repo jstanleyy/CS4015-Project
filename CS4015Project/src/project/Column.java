@@ -60,4 +60,12 @@ public class Column extends Glyph {
 		return new ListIterator(this.children);
 	}
 
+	/* (non-Javadoc)
+	 * @see project.Glyph#accept(project.GlyphVisitor)
+	 */
+	@Override
+	public void accept(GlyphVisitor visitor) {
+		visitor.visitColumn(this);
+	}
+
 }
