@@ -29,9 +29,9 @@ public class GlyphBuilder {
 	/**
 	 * Constructor is private so that only once instance of GlyphBuilder can exist.
 	 */
-	public GlyphBuilder() {
+	private GlyphBuilder() {
 		this.glyphFactory = new GlyphFactory();
-		this.root = this.glyphFactory.createColumn(); // Technically a column, but has the same functionality of a row.
+		this.root = this.glyphFactory.createColumn();
 	}
 	
 	/**
