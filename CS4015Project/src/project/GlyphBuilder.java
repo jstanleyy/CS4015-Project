@@ -71,4 +71,11 @@ public class GlyphBuilder {
 	public Glyph getList() {
 		return root;
 	}
+	
+	/**
+	 * Clears the tree by creating a new root.
+	 */
+	public void clear() {
+		this.root = this.glyphFactory.createColumn();
+	}
 }
