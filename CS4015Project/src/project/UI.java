@@ -109,8 +109,12 @@ public class UI {
 		btnUndo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				system.undo();
-				textArea.setText(system.getText());
+				if(system.undo()) {
+					textArea.setText(system.getText());
+					lblStatus.setText("Undone");
+				} else {
+					lblStatus.setText("Can't undo");
+				}
 			}
 		});
 		btnUndo.setBounds(335, 70, 89, 23);

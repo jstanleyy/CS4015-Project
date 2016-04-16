@@ -112,9 +112,14 @@ public class SystemFacade {
 	 * Undoes the last command.
 	 * @return True if the undo was successful
 	 */
-	public void undo() {
-		GlyphCommand gc = commandStack.pop();
-		gc.unexecute();
+	public boolean undo() {
+		boolean status = false;
+		if(!commandStack.isEmpty()) {
+			GlyphCommand gc = commandStack.pop();
+			gc.unexecute();
+			status = true;
+		}
+		return status;
 	}
 	
 	/**

@@ -51,20 +51,26 @@ public class PreorderIterator implements GlyphIterator {
 	 */
 	@Override
 	public void next() {
-		GlyphIterator i = this.iteratorStack.peek().currentItem().createIterator();
-		i.first();
-		this.iteratorStack.push(i);
-		
-		while(this.iteratorStack.size() > 0 && this.iteratorStack.peek().isDone()) {
-			this.iteratorStack.pop();
-			if(!this.iteratorStack.isEmpty()) {
-				this.iteratorStack.peek().next();
+	    Glyph g = this.iteratorStack.peek().currentItem();
+	    if(g != null) {
+	    	GlyphIterator i = g.createIterator();
+			i.first();
+			this.iteratorStack.push(i);
+			
+			while(this.iteratorStack.size() > 0 && this.iteratorStack.peek().isDone()) {
+				this.iteratorStack.pop();
+				if(!this.iteratorStack.isEmpty()) {
+					this.iteratorStack.peek().next();
+				}
 			}
-		}
-		
-		if(!this.iteratorStack.isEmpty()) {
-			this.currentItem = this.iteratorStack.peek().currentItem();
-		}
+			
+			if(!this.iteratorStack.isEmpty()) {
+				this.currentItem = this.iteratorStack.peek().currentItem();
+			}
+	    } else {
+	    	this.iteratorStack.pop();
+	    }
+	    
 	}
 
 	/* (non-Javadoc)

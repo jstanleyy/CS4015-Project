@@ -55,7 +55,11 @@ public class ListIterator implements GlyphIterator {
 	@Override
 	public Glyph currentItem() {
 		// TODO Auto-generated method stub
-		return this.list.getAt(this.index);
+		if(this.index < this.list.count()) {
+			return this.list.getAt(this.index);
+		} else {
+			return null;
+		}
 	}
 
 }
