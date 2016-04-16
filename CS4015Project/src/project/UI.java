@@ -8,10 +8,8 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 
 /**
  * @author jstanley
@@ -60,10 +58,12 @@ public class UI {
 		lblFileIO.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblFileIO.setBounds(335, 140, 89, 14);
 		frmEditor.getContentPane().add(lblFileIO);
-		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(0, 0, 320, 261);
-		frmEditor.getContentPane().add(textPane);
+
+		JTextArea textArea = new JTextArea();
+		textArea.setWrapStyleWord(true);
+		textArea.setLineWrap(true);
+		textArea.setBounds(0, 0, 320, 261);
+		frmEditor.getContentPane().add(textArea);
 		
 		JLabel lblStatus = new JLabel("");
 		lblStatus.setHorizontalAlignment(SwingConstants.CENTER);
@@ -74,7 +74,7 @@ public class UI {
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(system.loadFile()) {
-					textPane.setText(system.getText());
+					textArea.setText(system.getText());
 					lblStatus.setText("File loaded.");
 				} else {
 					lblStatus.setText("Error!");
@@ -106,18 +106,21 @@ public class UI {
 		frmEditor.getContentPane().add(lblActions);
 		
 		JButton btnUndo = new JButton("Undo");
+		btnUndo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				system.undo();
-				textPane.setText(system.getText());
+				textArea.setText(system.getText());
 			}
 		});
-		btnUndo.setBounds(335, 36, 89, 23);
+		btnUndo.setBounds(335, 70, 89, 23);
 		frmEditor.getContentPane().add(btnUndo);
 		
-		textPane.addKeyListener(new KeyAdapter() {
-			public void keyPressed(KeyEvent e) {
-				String updatedText = textPane.getText();
+		JButton btnUpdate = new JButton("Update");
+		btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnUpdate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String updatedText = textArea.getText();
 				if(system.update(updatedText)) {
 					lblStatus.setText("Updated");		
 				} else {
@@ -125,5 +128,13 @@ public class UI {
 				}
 			}
 		});
+		btnUpdate.setBounds(335, 36, 89, 23);
+		frmEditor.getContentPane().add(btnUpdate);
+		
+		JButton btnRedo = new JButton("Redo");
+		btnRedo.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnRedo.setBounds(335, 104, 89, 23);
+		frmEditor.getContentPane().add(btnRedo);
+		
 	}
 }
