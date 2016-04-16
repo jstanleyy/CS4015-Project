@@ -59,11 +59,12 @@ public class UI {
 		lblFileIO.setBounds(335, 140, 89, 14);
 		frmEditor.getContentPane().add(lblFileIO);
 
-		JTextArea textArea = new JTextArea();
-		textArea.setWrapStyleWord(true);
-		textArea.setLineWrap(true);
-		textArea.setBounds(0, 0, 320, 261);
-		frmEditor.getContentPane().add(textArea);
+		JTextArea txtrYouMustClick = new JTextArea();
+		txtrYouMustClick.setText("You must click update to store the changes in the composite structure. Always update being saving!\r\n\r\nThis text can now be deleted.");
+		txtrYouMustClick.setWrapStyleWord(true);
+		txtrYouMustClick.setLineWrap(true);
+		txtrYouMustClick.setBounds(0, 0, 320, 261);
+		frmEditor.getContentPane().add(txtrYouMustClick);
 		
 		JLabel lblStatus = new JLabel("");
 		lblStatus.setHorizontalAlignment(SwingConstants.CENTER);
@@ -74,7 +75,7 @@ public class UI {
 		btnLoad.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(system.loadFile()) {
-					textArea.setText(system.getText());
+					txtrYouMustClick.setText(system.getText());
 					lblStatus.setText("File loaded.");
 				} else {
 					lblStatus.setText("Error!");
@@ -110,7 +111,7 @@ public class UI {
 		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(system.undo()) {
-					textArea.setText(system.getText());
+					txtrYouMustClick.setText(system.getText());
 					lblStatus.setText("Undone");
 				} else {
 					lblStatus.setText("Can't undo");
@@ -124,7 +125,7 @@ public class UI {
 		btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnUpdate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String updatedText = textArea.getText();
+				String updatedText = txtrYouMustClick.getText();
 				if(system.update(updatedText)) {
 					lblStatus.setText("Updated");		
 				} else {
@@ -136,6 +137,16 @@ public class UI {
 		frmEditor.getContentPane().add(btnUpdate);
 		
 		JButton btnRedo = new JButton("Redo");
+		btnRedo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if(system.redo()) {
+					txtrYouMustClick.setText(system.getText());
+					lblStatus.setText("Redone");
+				} else {
+					lblStatus.setText("Can't redo");
+				}
+			}
+		});
 		btnRedo.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		btnRedo.setBounds(335, 104, 89, 23);
 		frmEditor.getContentPane().add(btnRedo);

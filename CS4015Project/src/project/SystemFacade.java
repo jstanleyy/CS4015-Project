@@ -40,6 +40,11 @@ public class SystemFacade {
 	Stack<GlyphCommand> commandStack;
 	
 	/**
+	 * Keeps track of the commands to redo.
+	 */
+	Stack<GlyphCommand> redoStack;
+	
+	/**
 	 * Initializes a GlyphBuilder, a BufferedReader, and creates a new file if it does not already exist.
 	 */
 	public SystemFacade() {
@@ -54,6 +59,7 @@ public class SystemFacade {
 		}
 		
 		commandStack = new Stack<GlyphCommand>();
+		redoStack = new Stack<GlyphCommand>();
 	}
 	
 	/**
@@ -110,13 +116,29 @@ public class SystemFacade {
 	
 	/**
 	 * Undoes the last command.
-	 * @return True if the undo was successful
+	 * @return True if the undo was successful.
 	 */
 	public boolean undo() {
 		boolean status = false;
 		if(!commandStack.isEmpty()) {
 			GlyphCommand gc = commandStack.pop();
+			redoStack.push(gc);
 			gc.unexecute();
+			status = true;
+		}
+		return status;
+	}
+	
+	/**
+	 * Redoes the last command.
+	 * @return True if the redo was successful.
+	 */
+	public boolean redo() {
+		boolean status = false;
+		if(!redoStack.isEmpty()) {
+			GlyphCommand gc = redoStack.pop();
+			commandStack.push(gc);
+			gc.execute();
 			status = true;
 		}
 		return status;
