@@ -6,7 +6,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
+import java.util.Stack;
 
 /**
  * @author jstanley
@@ -35,6 +35,11 @@ public class SystemFacade {
 	File file = new File("text.txt");
 	
 	/**
+	 * Keeps track of the order of commands.
+	 */
+	Stack<GlyphCommand> commandStack;
+	
+	/**
 	 * Initializes a GlyphBuilder, a BufferedReader, and creates a new file if it does not already exist.
 	 */
 	public SystemFacade() {
@@ -47,6 +52,8 @@ public class SystemFacade {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		commandStack = new Stack<GlyphCommand>();
 	}
 	
 	/**
@@ -95,18 +102,19 @@ public class SystemFacade {
 	 * @return True if the update was successful.
 	 */
 	public boolean update(String input) {
-		builder.clear();
-		Scanner parser = new Scanner(input);
-		while(parser.hasNextLine()) {
-			String line = parser.nextLine();
-			builder.buildRow();
-			for(int i = 0; i < line.length(); i++) {
-				char c = line.charAt(i);
-				builder.buildCharacter(c);
-			}
-		}
-		parser.close();
+		UpdateCommand up = new UpdateCommand(input);
+		commandStack.push(up);
+		up.execute();
 		return true;
+	}
+	
+	/**
+	 * Undoes the last command.
+	 * @return True if the undo was successful
+	 */
+	public void undo() {
+		GlyphCommand gc = commandStack.pop();
+		gc.unexecute();
 	}
 	
 	/**
@@ -114,8 +122,8 @@ public class SystemFacade {
 	 * @return The text that was stored in the tree.
 	 */
 	public String getText() {
-		Glyph list = builder.getList();
-		GlyphIterator i = new PreorderIterator(list);
+		Glyph root = builder.getRoot();
+		GlyphIterator i = new PreorderIterator(root);
 		GlyphVisitor originalVisitor = new DisplayTextVisitor();
 		for(i.first();!i.isDone();i.next()) {
 			Glyph cur = i.currentItem();

@@ -8,9 +8,15 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
 
+/**
+ * @author jstanley
+ *
+ */
 public class UI {
 
 	private JFrame frmEditor;
@@ -99,18 +105,25 @@ public class UI {
 		lblActions.setBounds(335, 11, 89, 14);
 		frmEditor.getContentPane().add(lblActions);
 		
-		JButton btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
+		JButton btnUndo = new JButton("Undo");
+		btnUndo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				system.undo();
+				textPane.setText(system.getText());
+			}
+		});
+		btnUndo.setBounds(335, 36, 89, 23);
+		frmEditor.getContentPane().add(btnUndo);
+		
+		textPane.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
 				String updatedText = textPane.getText();
 				if(system.update(updatedText)) {
-					lblStatus.setText("Updated");
+					lblStatus.setText("Updated");		
 				} else {
 					lblStatus.setText("Error!");
 				}
 			}
 		});
-		btnUpdate.setBounds(335, 36, 89, 23);
-		frmEditor.getContentPane().add(btnUpdate);
 	}
 }

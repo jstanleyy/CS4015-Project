@@ -68,7 +68,7 @@ public class GlyphBuilder {
 	 * Returns the root the tree.
 	 * @return The root of the tree.
 	 */
-	public Glyph getList() {
+	public Glyph getRoot() {
 		return root;
 	}
 	
@@ -77,5 +77,23 @@ public class GlyphBuilder {
 	 */
 	public void clear() {
 		this.root = this.glyphFactory.createColumn();
+	}
+
+	/**
+	 * Sets the state of the tree to the given state.
+	 * @param mem The memento that holds the state to set.
+	 */
+	public void setMemento(GlyphMemento mem) {
+		this.root = mem.getState();
+	}
+
+	/**
+	 * Creates a snapshot of the current state of the tree.
+	 * @return A memento containing the current state of the tree.
+	 */
+	public GlyphMemento createMemento() {
+		GlyphMemento mem = new GlyphMemento();
+		mem.setState(root);
+		return mem;
 	}
 }
